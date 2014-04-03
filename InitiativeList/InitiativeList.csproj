@@ -88,6 +88,9 @@
     <Content Include="js\ui-bootstrap-tpls-0.10.0.js" />
     <Content Include="js\xeditable.js" />
     <Content Include="js\xeditable.min.js" />
+    <Content Include="partials\encounter-list.html" />
+    <Content Include="partials\encounter-mode.html" />
+    <Content Include="partials\startpage.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

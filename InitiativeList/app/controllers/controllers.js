@@ -1,4 +1,11 @@
-﻿app.controller('EncounterController', function ($scope, encounterService) {
+﻿app.controller('StartpageController', function ($scope) {
+});
+
+app.controller('EncounterListController', function ($scope, encounterService) {
+    $scope.encounters = encounterService.getEncounters();
+});
+
+app.controller('EncounterController', function ($scope, encounterService) {
 
     Character = function (initData) {
         this.name = initData.name;

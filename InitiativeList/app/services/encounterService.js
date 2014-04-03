@@ -74,4 +74,11 @@
 
     };
 
+    this.getEncounters = function () {
+        return [
+            { id: 1, text: 'Encounter 1' },
+            { id: 2, text: 'Encounter 2' }
+        ];
+    };
+
 });

@@ -1,9 +1,33 @@
 ﻿
-var app = angular.module('initiativeApp', ['ui.bootstrap', 'xeditable']);
+var app = angular.module('initiativeApp', [
+    'ngRoute',
+    'ui.bootstrap',
+    'xeditable'
+]);
 
 app.run(function (editableOptions) {
     editableOptions.theme = 'bs3';
 });
+
+app.config(['$routeProvider',
+    function ($routeProvider) {
+        $routeProvider.
+            when('/encounters', {
+                templateUrl: 'partials/encounter-list.html',
+                controller: 'EncounterListController'
+            }).
+            when('/encounter:encounterId', {
+                templateUrl: 'partials/encounter-mode.html',
+                controller: 'EncounterController'
+            }).
+            when('/startpage', {
+                templateUrl: 'partials/startpage.html',
+                controller: 'StartpageController'
+            }).
+            otherwise({
+                redirectTo: 'startpage'
+            });
+    }]);
 
 // override the default input to update on blur
 app.directive('ngModelOnblur', function () {
