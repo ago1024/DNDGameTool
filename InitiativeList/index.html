@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap-theme.css" rel="stylesheet" />
+</head>
+<body data-ng-app="initiativeApp">
+
+    <div class="container" ng-controller="EncounterController">
+        <div>
+            <button class="btn btn-default" ng-click="next()">Next</button>
+        </div>
+
+        <div data-accordion data-close-others="false">
+          
+            <div data-accordion-group ng-repeat="character in characters" is-open="isActive(character)">
+                <div data-accordion-heading>
+                    <div class="row">
+                        <div class="col-lg-5 col-sm-4 btn" style="text-align: left">{{character.name}}</div>
+
+
+                        <div class="col-lg-1 col-sm-1 btn">AC:{{character.armorClass}}</div>
+                        <div class="col-lg-1 col-sm-1 btn">For:{{character.fortitude}}</div>
+                        <div class="col-lg-1 col-sm-1 btn">Ref:{{character.reflex}}</div>
+                        <div class="col-lg-1 col-sm-1 btn">Wil:{{character.will}}</div>
+
+                        <div class="col-lg-2 col-sm-3">
+                            <div class="input-group">
+                                <span class="input-group-addon">HP</span>
+                                <input class="form-control" size="3" type="number" ng-model-onchange ng-model="character.hp" />
+                                <span class="input-group-addon">{{character.bloodied || 0}}</span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-1 col-sm-1 btn">
+                            <i class="pull-right glyphicon" ng-class="{'glyphicon-ok': isActive(character), 'glyphicon-remove': !isActive(character), 'glyphicon-ban-circle': character.defer, 'glyphicon-remove-circle': isDead(character)}"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1 col-sm-0">
+                    </div>
+                    <div class="col-lg-4 col-sm-4">
+                        <div class="input-group">
+                            <span class="input-group-addon">Melee</span>
+                            <span class="form-control">{{character.meleeAttack}}</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-4">
+                        <div class="input-group">
+                            <span class="input-group-addon">Ranged</span>
+                            <span class="form-control">{{character.rangedAttack}}</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-3">
+                        <div class="input-group">
+                            <span class="input-group-addon">Ini</span>
+                            <input class="form-control" size="3" type="number" ng-model-onchange ng-model="character.initiative" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" ng-click="toggleDeferred(character)">
+                                    <i class="glyphicon" ng-class="{'glyphicon-ban-circle': character.defer, 'glyphicon-ok-circle': !character.defer}"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-1 col-sm-1">
+                        <button class="btn btn-default" ng-click="next()">
+                            <i class="glyphicon glyphicon-forward"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--
+        <div>
+            <ul>
+                <li ng-repeat="character in characters">
+                    {{character | json }}
+                </li>
+            </ul>            
+        </div>
+        -->
+    </div>
+
+    <!-- Vendor Libs: jQuery only used for Bootstrap functionality -->
+
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/jquery.min.js"></script>
+
+    <!-- UI Libs -->
+    <!--<script src="js/bootstrap.js"></script>-->
+    <script src="js/ui-bootstrap-tpls-0.10.0.js"></script>
+    <script src="js/xeditable.js"></script>
+
+
+    <!-- App libs -->
+    <script src="app/app.js"></script>
+    <script src="app/services/encounterService.js"></script>
+    <script src="app/controllers/controllers.js"></script>
+</body>
+</html>
