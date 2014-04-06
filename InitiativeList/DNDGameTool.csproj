@@ -62,8 +62,8 @@
     <Content Include="app\controllers\encounter.js" />
     <Content Include="app\controllers\game.js" />
     <Content Include="app\controllers\party.js" />
-    <Content Include="app\controllers\player.js" />
     <Content Include="app\controllers\template.js" />
+    <Content Include="app\services\couchdbService.js" />
     <Content Include="app\services\partyService.js" />
     <Content Include="app\services\templateService.js" />
     <Content Include="app\services\encounterService.js" />
@@ -105,8 +105,6 @@
     <Content Include="partials\startpage.html" />
     <Content Include="partials\party-list.html" />
     <Content Include="partials\template-list.html" />
-    <Content Include="partials\player-view.html" />
-    <Content Include="partials\encounter-character.html" />
     <Content Include="partials\template-view.html" />
     <Content Include="Web.config" />
   </ItemGroup>
