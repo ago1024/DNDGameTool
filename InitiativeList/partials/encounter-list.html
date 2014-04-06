@@ -1,9 +1,22 @@
 ﻿<div class="container">
     <div class="row">
-        <div class="list-group">
-            <a class="list-group-item" href="#/encounter/{{encounter.id}}" ng-repeat="encounter in encounters | orderBy:orderProp">{{encounter.text}}</a>
+        <h1>Encounters</h1>
+    </div>
+
+    <div class="row">
+        <div data-accordion>
+            <div data-accordion-group ng-repeat="campaign in encounters | groupBy:'campaign':true" data-is-open="isopen">
+                <div data-accordion-heading>
+                    {{campaign}}
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
+                </div>
+                <div class="list-group">
+                    <a class="list-group-item" href="#/encounter/{{encounter.id}}" ng-repeat="encounter in encounters | filter:{campaign: campaign}:true ">{{encounter.text}}</a>
+                </div>
+            </div>
         </div>
     </div>
+
     <div class="row">
         <a href="#/setup" class="btn btn-default">Back</a>
         <a href="#/encounter/_new" class="btn btn-default">Add encounter</a>
