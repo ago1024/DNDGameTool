@@ -12,13 +12,48 @@ app.run(function (editableOptions) {
 app.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.
+            when('/game/:encounterId', {
+                templateUrl: 'partials/game-mode.html',
+                controller: 'GameController'
+            }).
+            when('/games', {
+                templateUrl: 'partials/game-list.html',
+                controller: 'GameListController'
+            }).
             when('/encounters', {
                 templateUrl: 'partials/encounter-list.html',
                 controller: 'EncounterListController'
             }).
-            when('/encounter:encounterId', {
-                templateUrl: 'partials/encounter-mode.html',
+            when('/encounter/:encounterId/character/:characterName', {
+                templateUrl: 'partials/encounter-character.html',
+                controller: 'EncounterCharacterController'
+            }).
+            when('/encounter/:encounterId', {
+                templateUrl: 'partials/encounter-view.html',
                 controller: 'EncounterController'
+            }).
+            when('/templates', {
+                templateUrl: 'partials/template-list.html',
+                controller: 'TemplateListController'
+            }).
+            when('/template/:templateId', {
+                templateUrl: 'partials/template-view.html',
+                controller: 'TemplateController'
+            }).
+            when('/parties', {
+                templateUrl: 'partials/party-list.html',
+                controller: 'PartyListController'
+            }).
+            when('/party/:partyId/player/:playerName', {
+                templateUrl: 'partials/player-view.html',
+                controller: 'PlayerController'
+            }).
+            when('/party/:partyId', {
+                templateUrl: 'partials/party-view.html',
+                controller: 'PartyController'
+            }).
+            when('/setup', {
+                templateUrl: 'partials/setup.html',
             }).
             when('/startpage', {
                 templateUrl: 'partials/startpage.html',

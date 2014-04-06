@@ -1,0 +1,107 @@
+﻿<div class="container" id="encounter-character-view">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="well well-lg">
+                <form class="form-horizontal">
+                    <fieldset>
+                        <legend>Edit character</legend>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" >Character name</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" ng-model="character.name" />
+                                <p class="help-block">Name of the character character</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">HP</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="number" ng-model="character.hp" />
+                                <p class="help-block">Initial HP of the character</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Bloodied</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="number" ng-model="character.bloodied" />
+                                <p class="help-block">Number of HP to loose to become bloodied</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Initiative bonus</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="number" ng-model="character.initBonus" />
+                                <p class="help-block">Bonus to initiative rolls</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Armor class</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="number" ng-model="character.armorClass" />
+                                <p class="help-block">Armor class</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Fortitude</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="number" ng-model="character.fortitude" />
+                                <p class="help-block">Fortitude saving throw</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Reflex</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="number" ng-model="character.reflex" />
+                                <p class="help-block">Reflex saving throw</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Will</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="number" ng-model="character.will" />
+                                <p class="help-block">Will saving throw</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Melee attack</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" ng-model="character.meleeAttack" />
+                                <p class="help-block">Melee attack throw</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Ranged attack</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" ng-model="character.rangedAttack" />
+                                <p class="help-block">Ranged attack throw</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Ammunition</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="number" ng-model="character.ammo" />
+                                <p class="help-block">Number of bullets, darts, arrows</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Surges</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="number" ng-model="character.surges" />
+                                <p class="help-block">Number of available surges</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <a href="#/encounter/{{encounterId}}" class="btn btn-default pull-right">Back</a>
+                            </div>
+                            <div class="col-md-9">
+                                <button class="btn btn-primary" ng-click="save()">Save</button>
+                                <button class="btn btn-default pull-right" ng-click="delete()">Delete</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

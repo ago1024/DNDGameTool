@@ -59,7 +59,10 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\controllers\controllers.js" />
+    <Content Include="app\services\partyService.js" />
+    <Content Include="app\services\templateService.js" />
     <Content Include="app\services\encounterService.js" />
+    <Content Include="css\custom.css" />
     <Content Include="css\xeditable.css" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -88,9 +91,18 @@
     <Content Include="js\ui-bootstrap-tpls-0.10.0.js" />
     <Content Include="js\xeditable.js" />
     <Content Include="js\xeditable.min.js" />
+    <Content Include="partials\game-list.html" />
     <Content Include="partials\encounter-list.html" />
-    <Content Include="partials\encounter-mode.html" />
+    <Content Include="partials\game-mode.html" />
+    <Content Include="partials\encounter-view.html" />
+    <Content Include="partials\party-view.html" />
+    <Content Include="partials\setup.html" />
     <Content Include="partials\startpage.html" />
+    <Content Include="partials\party-list.html" />
+    <Content Include="partials\template-list.html" />
+    <Content Include="partials\player-view.html" />
+    <Content Include="partials\encounter-character.html" />
+    <Content Include="partials\template-view.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
