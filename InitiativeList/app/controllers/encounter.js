@@ -133,6 +133,12 @@ app.controller('EncounterController', function ($scope, $routeParams, encounterS
         $scope.selectedTemplate = template;
     };
 
+    $scope.deleteCharacter = function (character) {
+        if (character && $scope.encounter && $scope.encounter.characters) {
+            $scope.encounter.characters = $scope.encounter.characters.filter(function(element) { return !(element === character)});
+        }
+    };
+
     $scope.showCharacter = function (characterName) {
         encounterService.setEncounter($scope.encounter).then(function (data) {
             location.href = "#/encounter/" + data._id + "/character/" + characterName;
@@ -150,63 +156,4 @@ app.controller('EncounterController', function ($scope, $routeParams, encounterS
     }
 
     init();
-});
-
-
-app.controller('EncounterCharacterController', function ($scope, $routeParams, encounterService) {
-    init();
-    function init() {
-        $scope.encounterId = $routeParams.encounterId;
-        encounterService.getEncounter($routeParams.encounterId).then(function (data) {
-            $scope.encounter = data;
-            if ($routeParams.characterName == '_new') {
-                $scope.character = {};
-            } else if (!data.characters) {
-                $scope.character = {};
-            } else {
-                var pos = data.characters.map(function (character) { return character.name; }).indexOf($routeParams.characterName);
-                if (pos == -1) {
-                    $scope.character = {};
-                } else {
-                    $scope.character = data.characters[pos];
-                }
-            }
-        }, function () {
-            $scope.character = {};
-        });
-    };
-
-    $scope.save = function () {
-        if ($scope.character && $scope.character.name) {
-            if (!$scope.ecnounter.characters)
-                $scope.encounter.characters = [];
-
-            var pos = data.characters.map(function (character) { return character.name; }).indexOf($routeParams.characterName);
-            if (pos == -1) {
-                $scope.ecnounter.characters.push($scope.character);
-            } else {
-                $scope.encounter.characters[pos] = $scope.character;
-            }
-            encounterService.setEncounter($scope.encounterId).then(function (data) {
-                location.href = "#/encounter/" + data._id;
-            }, function () { });
-        } else if ($scope.character && !$scope.character.name) {
-            alert("Character name is required");
-        }
-    };
-
-    $scope.delete = function () {
-        encounterService.getEncounter($routeParams.encounterId).then(function (data) {
-            if (!data.characters) {
-                data.characters = [];
-            };
-
-            data.characters = data.characters.filter(function (character) { return character.name != $routeParams.characterName; });
-            encounterService.setEncounter(data).then(function (data) {
-                location.href = "#/encounter/" + $routeParams.encounterId;
-            }, function () { });
-        });
-        return false;
-    };
-
 });

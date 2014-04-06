@@ -17,10 +17,106 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Players</label>
                             <div class="col-md-9">
-                                <div class="list-group">
-                                    <a class="list-group-item" href="#/party/{{id}}/player/{{player.name}}" ng-repeat="player in party.players">{{player.name}}</a>
+
+                                <div data-accordion>
+                                    <div data-accordion-group ng-repeat="player in party.players | orderBy:'name'" data-is-open="isopen">
+                                        <div data-accordion-heading>
+                                            {{player.name}}
+                                            <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Player name</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" type="text" ng-model="player.name" />
+                                                <p class="help-block">Name of the player</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">HP</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" type="number" ng-model="player.hp" />
+                                                <p class="help-block">Initial HP of the player</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Bloodied</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" type="number" ng-model="player.bloodied" />
+                                                <p class="help-block">Number of HP to loose to become bloodied</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Initiative bonus</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" type="number" ng-model="player.initBonus" />
+                                                <p class="help-block">Bonus to initiative rolls</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Armor class</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" type="number" ng-model="player.armorClass" />
+                                                <p class="help-block">Armor class</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Fortitude</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" type="number" ng-model="player.fortitude" />
+                                                <p class="help-block">Fortitude saving throw</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Reflex</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" type="number" ng-model="player.reflex" />
+                                                <p class="help-block">Reflex saving throw</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Will</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" type="number" ng-model="player.will" />
+                                                <p class="help-block">Will saving throw</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Melee attack</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" type="text" ng-model="player.meleeAttack" />
+                                                <p class="help-block">Melee attack throw</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Ranged attack</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" type="text" ng-model="player.rangedAttack" />
+                                                <p class="help-block">Ranged attack throw</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Ammunition</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" type="number" ng-model="player.ammo" />
+                                                <p class="help-block">Number of bullets, darts, arrows</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Surges</label>
+                                            <div class="col-md-9">
+                                                <input class="form-control" type="number" ng-model="player.surges" />
+                                                <p class="help-block">Number of available surges</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label"></label>
+                                            <div class="col-md-9">
+                                                <button type="button" class="btn btn-default" ng-click="deletePlayer(player)">Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-default" ng-click="addPlayer()">Add player</button>
                                 </div>
-                                <button class="btn btn-default" ng-class="{'disabled': !party.name}" ng-click="addPlayer()">Add player</button>
                             </div>
                         </div>
 
@@ -33,7 +129,6 @@
                                 <button class="btn btn-default" ng-click="delete()">Delete</button>
                             </div>
                         </div>
-
                     </fieldset>
                 </form>
             </div>

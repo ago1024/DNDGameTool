@@ -24,10 +24,6 @@ app.config(['$routeProvider',
                 templateUrl: 'partials/encounter-list.html',
                 controller: 'EncounterListController'
             }).
-            when('/encounter/:encounterId/character/:characterName', {
-                templateUrl: 'partials/encounter-character.html',
-                controller: 'EncounterCharacterController'
-            }).
             when('/encounter/:encounterId', {
                 templateUrl: 'partials/encounter-view.html',
                 controller: 'EncounterController'
@@ -43,10 +39,6 @@ app.config(['$routeProvider',
             when('/parties', {
                 templateUrl: 'partials/party-list.html',
                 controller: 'PartyListController'
-            }).
-            when('/party/:partyId/player/:playerName', {
-                templateUrl: 'partials/player-view.html',
-                controller: 'PlayerController'
             }).
             when('/party/:partyId', {
                 templateUrl: 'partials/party-view.html',

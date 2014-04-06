@@ -32,13 +32,17 @@ app.controller('PartyController', function ($scope, $routeParams, partyService) 
     };
 
     $scope.addPlayer = function () {
-        partyService.setParty($scope.party).then(function (data) {
-            location.href = href = "#/party/" + data._id + "/player/_new";
-        }, function () {
-            $scope.party = undefined;
-        });
-    }
+        if (!$scope.party.players) {
+            $scope.party.players = [];
+        }
+        $scope.party.players.push({ name: 'New player' });
+    };
 
+    $scope.deletePlayer = function (player) {
+        if (player && $scope.party && $scope.party.players) {
+            $scope.party.players = $scope.party.players.filter(function (element) { return !(element === player) });
+        }
+    };
 
     $scope.delete = function () {
         partyService.deleteParty($scope.party).then(function (data) {
