@@ -148,10 +148,17 @@
                                                     <span class="caret"></span>
                                                     <span class="sr-only">Toggle dropdown</span>
                                                 </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li ng-repeat="template in templates | orderBy:text">
-                                                        <a ng-click="selectTemplate(template)">{{template.text}}</a>
+                                                <ul class="dropdown-menu multi-level" role="menu">
+                                                    <li ng-repeat="race in templates | groupBy:'race':true | orderBy:'toString()'" class="dropdown-submenu">
+                                                        <a class="trigger right-caret">{{race}}</a>
+                                                        <ul class="dropdown-menu">
+                                                            <li ng-repeat="template in templates | filter:{race: race}:true">
+                                                                <a href="" ng-click="selectTemplate(template)">{{template.text}}</a>
+                                                            </li>
+                                                        </ul>
                                                     </li>
+
+
                                                 </ul>
                                                 <button type="button" class="btn btn-default" ng-class="{'disabled': !selectedTemplate}" ng-click="addSelectedTemplate()">Add NPC</button>
                                             </div>
