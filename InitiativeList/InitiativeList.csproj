@@ -59,6 +59,11 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\controllers\controllers.js" />
+    <Content Include="app\controllers\encounter.js" />
+    <Content Include="app\controllers\game.js" />
+    <Content Include="app\controllers\party.js" />
+    <Content Include="app\controllers\player.js" />
+    <Content Include="app\controllers\template.js" />
     <Content Include="app\services\partyService.js" />
     <Content Include="app\services\templateService.js" />
     <Content Include="app\services\encounterService.js" />
