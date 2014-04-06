@@ -103,3 +103,26 @@ app.directive('ngModelOnchange', function () {
         }
     };
 });
+
+app.filter('groupBy', function () {
+    var uniqueItems = function (data, index, caseSensitive) {
+        var result = [];
+        var keys = [];
+        for (var i = 0; i < data.length; i++) {
+            var value = data[i][index];
+            var key = value;
+            if (!caseSensitive && value)
+                key = value.toLowerCase();
+            if (keys.indexOf(key) == -1) {
+                keys.push(key);
+                result.push(value);
+            };
+        };
+        return result;
+    };
+
+    return function (collection, key, caseSensitive) {
+        if (collection === null) return;
+        return uniqueItems(collection, key, caseSensitive);
+    };
+});
