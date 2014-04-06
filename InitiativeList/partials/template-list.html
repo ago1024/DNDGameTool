@@ -1,9 +1,21 @@
 ﻿<div class="container">
     <div class="row">
-        <div class="list-group col-lg-12">
-                <a href="#/template/{{template.id}}" class="list-group-item" ng-repeat="template in templates">
-                    {{template.text}}
-                </a>
+        <h1>NPC templates</h1>
+    </div>
+
+    <div class="row">
+        <div data-accordion>
+            <div data-accordion-group ng-repeat="race in templates | groupBy:'race':true | orderBy:'toString()'" data-is-open="isopen">
+                <div data-accordion-heading>
+                    {{race}}
+                    <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
+                </div>
+                <div class="list-group">
+                    <a href="#/template/{{template.id}}" class="list-group-item" ng-repeat="template in templates | filter:{race: race}:true | orderBy:'text'">
+                        {{template.text}}
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
