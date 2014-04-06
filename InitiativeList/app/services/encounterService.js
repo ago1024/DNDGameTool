@@ -29,7 +29,7 @@
         var deferred = $q.defer();
         $http.get('http://127.0.0.1:5984/initiative/_design/encounters/_view/all').
             success(function (data, status, headers, config) {
-                deferred.resolve(data.rows.map(function (element) { return { id: element.id, text: element.value }; }));
+                deferred.resolve(data.rows.map(function (element) { return { id: element.id, text: element.value.text, campaign: element.value.campaign }; }));
                 $rootScope.$$phase || $rootScope.$apply();
             }).
             error(function (data, status, headers, config) {
