@@ -10,22 +10,30 @@
 
 app.controller('TemplateController', function ($scope, $routeParams, templateService) {
 
+    function load() {
+        templateService.getTemplate($routeParams.templateId).then(function (data) {
+            $scope.template = data;
+        }, function () {
+            $scope.template = undefined;
+        });
+    };
+
     init();
     function init() {
         if ($routeParams.templateId == '_new') {
             $scope.template = {};
         } else {
-            templateService.getTemplate($routeParams.templateId).then(function (data) {
-                $scope.template = data;
-            }, function () {
-                $scope.template = undefined;
-            });
+            load();
         }
     };
 
     $scope.save = function () {
         templateService.setTemplate($scope.template).then(function (data) {
-            location.href = "#/template/" + data._id;
+            if (data._id == $routeParams.templateId) {
+                load();
+            } else {
+                location.href = "#/template/" + data._id;
+            }
         }, function () {
             $scope.template = undefined;
         });

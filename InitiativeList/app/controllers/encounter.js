@@ -10,37 +10,45 @@
 
 
 app.controller('EncounterController', function ($scope, $routeParams, encounterService, partyService, templateService) {
+    function load() {
+        encounterService.getEncounter($routeParams.encounterId).then(function (data) {
+            $scope.encounter = data;
+            $scope.id = data._id;
+        }, function () {
+            $scope.encounter = {};
+        });
+    };
+
     function init() {
         $scope.templateCount = 1;
         if ($routeParams.encounterId == '_new') {
             $scope.encounter = {};
             $scope.id = $routeParams.encounterId;
         } else {
-            encounterService.getEncounter($routeParams.encounterId).then(function (data) {
-                $scope.encounter = data;
-                $scope.id = data._id;
-            }, function () {
-                $scope.encounter = {};
-            });
+            load();
         }
 
         partyService.getParties().then(function (data) {
             $scope.parties = data;
         }, function () {
-            $scope.parties = undefined;
+            $scope.parties = [];
         });
 
         templateService.getTemplates().then(function (data) {
             $scope.templates = data;
         }, function () {
-            $scope.templates = undefined;
+            $scope.templates = [];
         });
 
     };
 
     $scope.save = function () {
         encounterService.setEncounter($scope.encounter).then(function (data) {
-            location.href = "#/encounter/" + data._id;
+            if (data._id == $routeParams.encounterId) {
+                load();
+            } else {
+                location.href = "#/encounter/" + data._id;
+            }
         }, function () {
             $scope.encounter = undefined;
         });

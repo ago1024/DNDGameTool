@@ -9,23 +9,31 @@
 });
 
 app.controller('PartyController', function ($scope, $routeParams, partyService) {
+    function load() {
+        partyService.getParty($routeParams.partyId).then(function (data) {
+            $scope.party = data;
+            $scope.id = data._id;
+        }, function () {
+            $scope.party = undefined;
+        });
+    };
+
     function init() {
         if ($routeParams.partyId == '_new') {
-            $scope.party = {};
+            $scope.party = { players: [] };
             $scope.id = $routeParams.partyId;
         } else {
-            partyService.getParty($routeParams.partyId).then(function (data) {
-                $scope.party = data;
-                $scope.id = data._id;
-            }, function () {
-                $scope.party = undefined;
-            });
+            load();
         }
     };
 
     $scope.save = function () {
         partyService.setParty($scope.party).then(function (data) {
-            location.href = "#/party/" + data._id;
+            if (data._id == $routeParams.partyId) {
+                load();
+            } else {
+                location.href = "#/party/" + data._id;
+            }
         }, function () {
             $scope.party = undefined;
         });

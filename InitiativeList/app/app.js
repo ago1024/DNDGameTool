@@ -114,7 +114,7 @@ app.filter('groupBy', function () {
     };
 
     return function (collection, key, caseSensitive) {
-        if (collection === null) return;
+        if (collection === undefined) return;
         return uniqueItems(collection, key, caseSensitive);
     };
 });
